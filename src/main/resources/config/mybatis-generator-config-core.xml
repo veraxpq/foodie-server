@@ -36,7 +36,19 @@
         <table schema="foodie" tableName="user_info" catalog="">
             <property name="ignoreQualifiersAtRuntime" value="true" />
 <!--            <generatedKey column="log_id" sqlStatement="MySql" identity="true" />-->
-            <ignoreColumn column="insert_time"/>
+            <ignoreColumn column="create_time"/>
+        </table>
+
+        <table schema="foodie" tableName="user_type" catalog="">
+            <property name="ignoreQualifiersAtRuntime" value="true" />
+            <!--            <generatedKey column="log_id" sqlStatement="MySql" identity="true" />-->
+<!--            <ignoreColumn column="insert_time"/>-->
+        </table>
+
+        <table schema="foodie" tableName="business_info" catalog="">
+            <property name="ignoreQualifiersAtRuntime" value="true" />
+            <!--            <generatedKey column="log_id" sqlStatement="MySql" identity="true" />-->
+<!--            <ignoreColumn column="insert_time"/>-->
         </table>
 
 <!--        <table schema="ml_train_projects" tableName="graph" catalog="ml_train_projects">-->

@@ -1,8 +1,11 @@
 package foodie.service;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import foodie.domain.model.UserInfo;
 
 public interface UserService {
-    JSONObject getUserInfo();
+    JSONArray getUserInfo();
+    void updateUserInfo(JSONObject user);
+    void deleteUser(int id);
+    void createUser(JSONObject user);
 }

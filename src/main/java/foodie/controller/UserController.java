@@ -1,5 +1,6 @@
 package foodie.controller;
 
+import com.alibaba.fastjson.JSONArray;
 import foodie.service.UserService;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.logging.log4j.LogManager;
@@ -14,25 +15,40 @@ import javax.servlet.http.HttpServletResponse;
 @RestController
 @RequestMapping("/foodie")
 @Service
-public class DBController {
+public class UserController {
 
-    private static final Logger logger = LogManager.getLogger(DBController.class.getName());
+    private static final Logger logger = LogManager.getLogger(UserController.class.getName());
 
     @Autowired
     private UserService userService;
 
     @GetMapping(value="/userInfo")
-    public JSONObject getUserInfo(HttpServletRequest request, HttpServletResponse response) {
-        JSONObject user;
+    public JSONArray getUserInfo(HttpServletRequest request, HttpServletResponse response) {
+        JSONArray user;
 
         try {
             user = userService.getUserInfo();
         } catch (DuplicateKeyException e) {
-            throw new IllegalArgumentException("项目名和项目描述不能为空");
+            throw new IllegalArgumentException("This email is registered, please log in.");
         }
         return user;
     }
 
+    @PutMapping(value = "/updateUserInfo")
+    public void updateUserInfo(HttpServletRequest request, HttpServletResponse response, @RequestBody JSONObject user) {
+        userService.updateUserInfo(user);
+    }
+
+    @PostMapping(value = "/createUser")
+    public void createUser(HttpServletRequest request, HttpServletResponse response, @RequestBody JSONObject obj) {
+        userService.createUser(obj);
+    }
+
+    @DeleteMapping(value = "/deleteUser")
+    public void deleteUser(HttpServletRequest request, HttpServletResponse response,
+                           @RequestParam("id") int id) {
+        userService.deleteUser(id);
+    }
 //    /**
 //     * Delete the project in the databases, at the same time delete all the tasks in this project in the databases.
 //     *

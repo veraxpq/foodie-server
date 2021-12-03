@@ -1,5 +1,7 @@
 package foodie.domain.model;
 
+import java.util.Date;
+
 public class UserInfo {
     private Integer id;
 
@@ -15,7 +17,7 @@ public class UserInfo {
 
     private String description;
 
-    private String createTime;
+    private Date dayOfBirth;
 
     public Integer getId() {
         return id;
@@ -73,11 +75,11 @@ public class UserInfo {
         this.description = description;
     }
 
-    public String getCreateTime() {
-        return createTime;
+    public Date getDayOfBirth() {
+        return dayOfBirth;
     }
 
-    public void setCreateTime(String createTime) {
-        this.createTime = createTime;
+    public void setDayOfBirth(Date dayOfBirth) {
+        this.dayOfBirth = dayOfBirth;
     }
 }

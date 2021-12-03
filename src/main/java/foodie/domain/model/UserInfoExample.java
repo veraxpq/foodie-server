@@ -1,6 +1,7 @@
 package foodie.domain.model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class UserInfoExample {
@@ -574,73 +575,63 @@ public class UserInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeIsNull() {
-            addCriterion("create_time is null");
+        public Criteria andDayOfBirthIsNull() {
+            addCriterion("day_of_birth is null");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeIsNotNull() {
-            addCriterion("create_time is not null");
+        public Criteria andDayOfBirthIsNotNull() {
+            addCriterion("day_of_birth is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeEqualTo(String value) {
-            addCriterion("create_time =", value, "createTime");
+        public Criteria andDayOfBirthEqualTo(Date value) {
+            addCriterion("day_of_birth =", value, "dayOfBirth");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeNotEqualTo(String value) {
-            addCriterion("create_time <>", value, "createTime");
+        public Criteria andDayOfBirthNotEqualTo(Date value) {
+            addCriterion("day_of_birth <>", value, "dayOfBirth");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeGreaterThan(String value) {
-            addCriterion("create_time >", value, "createTime");
+        public Criteria andDayOfBirthGreaterThan(Date value) {
+            addCriterion("day_of_birth >", value, "dayOfBirth");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeGreaterThanOrEqualTo(String value) {
-            addCriterion("create_time >=", value, "createTime");
+        public Criteria andDayOfBirthGreaterThanOrEqualTo(Date value) {
+            addCriterion("day_of_birth >=", value, "dayOfBirth");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeLessThan(String value) {
-            addCriterion("create_time <", value, "createTime");
+        public Criteria andDayOfBirthLessThan(Date value) {
+            addCriterion("day_of_birth <", value, "dayOfBirth");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeLessThanOrEqualTo(String value) {
-            addCriterion("create_time <=", value, "createTime");
+        public Criteria andDayOfBirthLessThanOrEqualTo(Date value) {
+            addCriterion("day_of_birth <=", value, "dayOfBirth");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeLike(String value) {
-            addCriterion("create_time like", value, "createTime");
+        public Criteria andDayOfBirthIn(List<Date> values) {
+            addCriterion("day_of_birth in", values, "dayOfBirth");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeNotLike(String value) {
-            addCriterion("create_time not like", value, "createTime");
+        public Criteria andDayOfBirthNotIn(List<Date> values) {
+            addCriterion("day_of_birth not in", values, "dayOfBirth");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeIn(List<String> values) {
-            addCriterion("create_time in", values, "createTime");
+        public Criteria andDayOfBirthBetween(Date value1, Date value2) {
+            addCriterion("day_of_birth between", value1, value2, "dayOfBirth");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeNotIn(List<String> values) {
-            addCriterion("create_time not in", values, "createTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateTimeBetween(String value1, String value2) {
-            addCriterion("create_time between", value1, value2, "createTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateTimeNotBetween(String value1, String value2) {
-            addCriterion("create_time not between", value1, value2, "createTime");
+        public Criteria andDayOfBirthNotBetween(Date value1, Date value2) {
+            addCriterion("day_of_birth not between", value1, value2, "dayOfBirth");
             return (Criteria) this;
         }
     }
