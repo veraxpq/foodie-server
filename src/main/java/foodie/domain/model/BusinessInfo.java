@@ -7,7 +7,7 @@ public class BusinessInfo {
 
     private String username;
 
-    private String phoneNumber;
+    private String phone;
 
     private String firstName;
 
@@ -20,10 +20,6 @@ public class BusinessInfo {
     private String restaurantName;
 
     private String restaurantAddress;
-
-    private String restaurantCity;
-
-    private String restaurantProvince;
 
     public Integer getId() {
         return id;
@@ -49,12 +45,12 @@ public class BusinessInfo {
         this.username = username;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getFirstName() {
@@ -103,21 +99,5 @@ public class BusinessInfo {
 
     public void setRestaurantAddress(String restaurantAddress) {
         this.restaurantAddress = restaurantAddress;
-    }
-
-    public String getRestaurantCity() {
-        return restaurantCity;
-    }
-
-    public void setRestaurantCity(String restaurantCity) {
-        this.restaurantCity = restaurantCity;
-    }
-
-    public String getRestaurantProvince() {
-        return restaurantProvince;
-    }
-
-    public void setRestaurantProvince(String restaurantProvince) {
-        this.restaurantProvince = restaurantProvince;
     }
 }

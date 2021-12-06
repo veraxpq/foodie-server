@@ -304,73 +304,73 @@ public class BusinessInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andPhoneNumberIsNull() {
-            addCriterion("phone_number is null");
+        public Criteria andPhoneIsNull() {
+            addCriterion("phone is null");
             return (Criteria) this;
         }
 
-        public Criteria andPhoneNumberIsNotNull() {
-            addCriterion("phone_number is not null");
+        public Criteria andPhoneIsNotNull() {
+            addCriterion("phone is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPhoneNumberEqualTo(String value) {
-            addCriterion("phone_number =", value, "phoneNumber");
+        public Criteria andPhoneEqualTo(String value) {
+            addCriterion("phone =", value, "phone");
             return (Criteria) this;
         }
 
-        public Criteria andPhoneNumberNotEqualTo(String value) {
-            addCriterion("phone_number <>", value, "phoneNumber");
+        public Criteria andPhoneNotEqualTo(String value) {
+            addCriterion("phone <>", value, "phone");
             return (Criteria) this;
         }
 
-        public Criteria andPhoneNumberGreaterThan(String value) {
-            addCriterion("phone_number >", value, "phoneNumber");
+        public Criteria andPhoneGreaterThan(String value) {
+            addCriterion("phone >", value, "phone");
             return (Criteria) this;
         }
 
-        public Criteria andPhoneNumberGreaterThanOrEqualTo(String value) {
-            addCriterion("phone_number >=", value, "phoneNumber");
+        public Criteria andPhoneGreaterThanOrEqualTo(String value) {
+            addCriterion("phone >=", value, "phone");
             return (Criteria) this;
         }
 
-        public Criteria andPhoneNumberLessThan(String value) {
-            addCriterion("phone_number <", value, "phoneNumber");
+        public Criteria andPhoneLessThan(String value) {
+            addCriterion("phone <", value, "phone");
             return (Criteria) this;
         }
 
-        public Criteria andPhoneNumberLessThanOrEqualTo(String value) {
-            addCriterion("phone_number <=", value, "phoneNumber");
+        public Criteria andPhoneLessThanOrEqualTo(String value) {
+            addCriterion("phone <=", value, "phone");
             return (Criteria) this;
         }
 
-        public Criteria andPhoneNumberLike(String value) {
-            addCriterion("phone_number like", value, "phoneNumber");
+        public Criteria andPhoneLike(String value) {
+            addCriterion("phone like", value, "phone");
             return (Criteria) this;
         }
 
-        public Criteria andPhoneNumberNotLike(String value) {
-            addCriterion("phone_number not like", value, "phoneNumber");
+        public Criteria andPhoneNotLike(String value) {
+            addCriterion("phone not like", value, "phone");
             return (Criteria) this;
         }
 
-        public Criteria andPhoneNumberIn(List<String> values) {
-            addCriterion("phone_number in", values, "phoneNumber");
+        public Criteria andPhoneIn(List<String> values) {
+            addCriterion("phone in", values, "phone");
             return (Criteria) this;
         }
 
-        public Criteria andPhoneNumberNotIn(List<String> values) {
-            addCriterion("phone_number not in", values, "phoneNumber");
+        public Criteria andPhoneNotIn(List<String> values) {
+            addCriterion("phone not in", values, "phone");
             return (Criteria) this;
         }
 
-        public Criteria andPhoneNumberBetween(String value1, String value2) {
-            addCriterion("phone_number between", value1, value2, "phoneNumber");
+        public Criteria andPhoneBetween(String value1, String value2) {
+            addCriterion("phone between", value1, value2, "phone");
             return (Criteria) this;
         }
 
-        public Criteria andPhoneNumberNotBetween(String value1, String value2) {
-            addCriterion("phone_number not between", value1, value2, "phoneNumber");
+        public Criteria andPhoneNotBetween(String value1, String value2) {
+            addCriterion("phone not between", value1, value2, "phone");
             return (Criteria) this;
         }
 
@@ -791,146 +791,6 @@ public class BusinessInfoExample {
 
         public Criteria andRestaurantAddressNotBetween(String value1, String value2) {
             addCriterion("restaurant_address not between", value1, value2, "restaurantAddress");
-            return (Criteria) this;
-        }
-
-        public Criteria andRestaurantCityIsNull() {
-            addCriterion("restaurant_city is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andRestaurantCityIsNotNull() {
-            addCriterion("restaurant_city is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andRestaurantCityEqualTo(String value) {
-            addCriterion("restaurant_city =", value, "restaurantCity");
-            return (Criteria) this;
-        }
-
-        public Criteria andRestaurantCityNotEqualTo(String value) {
-            addCriterion("restaurant_city <>", value, "restaurantCity");
-            return (Criteria) this;
-        }
-
-        public Criteria andRestaurantCityGreaterThan(String value) {
-            addCriterion("restaurant_city >", value, "restaurantCity");
-            return (Criteria) this;
-        }
-
-        public Criteria andRestaurantCityGreaterThanOrEqualTo(String value) {
-            addCriterion("restaurant_city >=", value, "restaurantCity");
-            return (Criteria) this;
-        }
-
-        public Criteria andRestaurantCityLessThan(String value) {
-            addCriterion("restaurant_city <", value, "restaurantCity");
-            return (Criteria) this;
-        }
-
-        public Criteria andRestaurantCityLessThanOrEqualTo(String value) {
-            addCriterion("restaurant_city <=", value, "restaurantCity");
-            return (Criteria) this;
-        }
-
-        public Criteria andRestaurantCityLike(String value) {
-            addCriterion("restaurant_city like", value, "restaurantCity");
-            return (Criteria) this;
-        }
-
-        public Criteria andRestaurantCityNotLike(String value) {
-            addCriterion("restaurant_city not like", value, "restaurantCity");
-            return (Criteria) this;
-        }
-
-        public Criteria andRestaurantCityIn(List<String> values) {
-            addCriterion("restaurant_city in", values, "restaurantCity");
-            return (Criteria) this;
-        }
-
-        public Criteria andRestaurantCityNotIn(List<String> values) {
-            addCriterion("restaurant_city not in", values, "restaurantCity");
-            return (Criteria) this;
-        }
-
-        public Criteria andRestaurantCityBetween(String value1, String value2) {
-            addCriterion("restaurant_city between", value1, value2, "restaurantCity");
-            return (Criteria) this;
-        }
-
-        public Criteria andRestaurantCityNotBetween(String value1, String value2) {
-            addCriterion("restaurant_city not between", value1, value2, "restaurantCity");
-            return (Criteria) this;
-        }
-
-        public Criteria andRestaurantProvinceIsNull() {
-            addCriterion("restaurant_province is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andRestaurantProvinceIsNotNull() {
-            addCriterion("restaurant_province is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andRestaurantProvinceEqualTo(String value) {
-            addCriterion("restaurant_province =", value, "restaurantProvince");
-            return (Criteria) this;
-        }
-
-        public Criteria andRestaurantProvinceNotEqualTo(String value) {
-            addCriterion("restaurant_province <>", value, "restaurantProvince");
-            return (Criteria) this;
-        }
-
-        public Criteria andRestaurantProvinceGreaterThan(String value) {
-            addCriterion("restaurant_province >", value, "restaurantProvince");
-            return (Criteria) this;
-        }
-
-        public Criteria andRestaurantProvinceGreaterThanOrEqualTo(String value) {
-            addCriterion("restaurant_province >=", value, "restaurantProvince");
-            return (Criteria) this;
-        }
-
-        public Criteria andRestaurantProvinceLessThan(String value) {
-            addCriterion("restaurant_province <", value, "restaurantProvince");
-            return (Criteria) this;
-        }
-
-        public Criteria andRestaurantProvinceLessThanOrEqualTo(String value) {
-            addCriterion("restaurant_province <=", value, "restaurantProvince");
-            return (Criteria) this;
-        }
-
-        public Criteria andRestaurantProvinceLike(String value) {
-            addCriterion("restaurant_province like", value, "restaurantProvince");
-            return (Criteria) this;
-        }
-
-        public Criteria andRestaurantProvinceNotLike(String value) {
-            addCriterion("restaurant_province not like", value, "restaurantProvince");
-            return (Criteria) this;
-        }
-
-        public Criteria andRestaurantProvinceIn(List<String> values) {
-            addCriterion("restaurant_province in", values, "restaurantProvince");
-            return (Criteria) this;
-        }
-
-        public Criteria andRestaurantProvinceNotIn(List<String> values) {
-            addCriterion("restaurant_province not in", values, "restaurantProvince");
-            return (Criteria) this;
-        }
-
-        public Criteria andRestaurantProvinceBetween(String value1, String value2) {
-            addCriterion("restaurant_province between", value1, value2, "restaurantProvince");
-            return (Criteria) this;
-        }
-
-        public Criteria andRestaurantProvinceNotBetween(String value1, String value2) {
-            addCriterion("restaurant_province not between", value1, value2, "restaurantProvince");
             return (Criteria) this;
         }
     }

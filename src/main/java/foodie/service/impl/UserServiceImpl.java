@@ -3,9 +3,12 @@ package foodie.service.impl;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import foodie.domain.client.BusinessInfoMapper;
 import foodie.domain.client.UserInfoMapper;
+import foodie.domain.model.BusinessInfo;
 import foodie.domain.model.UserInfo;
 import foodie.domain.model.UserInfoExample;
+import foodie.domain.model.UserLoginInfo;
 import foodie.service.UserService;
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +21,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserInfoMapper userInfoMapper;
+
+    @Autowired
+    private BusinessInfoMapper businessInfoMapper;
 
     @Autowired
     public JSONArray getUserInfo() {
@@ -47,5 +53,31 @@ public class UserServiceImpl implements UserService {
     public void createUser(JSONObject user) {
         UserInfo userInfo = user.toJavaObject(UserInfo.class);
         userInfoMapper.insert(userInfo);
+    }
+
+    @Override
+    public void createBusinessUser(JSONObject user) {
+        BusinessInfo businessInfo = user.toJavaObject(BusinessInfo.class);
+        businessInfoMapper.insert(businessInfo);
+    }
+
+    @Override
+    public JSONObject login(JSONObject user) {
+        UserLoginInfo userLoginInfo = user.toJavaObject(UserLoginInfo.class);
+        UserInfoExample example = new UserInfoExample();
+        UserInfoExample.Criteria criteria = example.createCriteria();
+        criteria.andEmailEqualTo(userLoginInfo.getEmail());
+        List<UserInfo> userInfos = userInfoMapper.selectByExample(example);
+        JSONObject res = new JSONObject();
+        if (userInfos == null || userInfos.size() == 0) {
+            res.put("error", "This email does not register.");
+        } else {
+            if (userInfos.get(0).getPassword().equals(userLoginInfo.getPassword())) {
+                return (JSONObject) JSONObject.toJSON(userInfos.get(0));
+            } else {
+                res.put("error", "The password is not correct.");
+            }
+        }
+        return res;
     }
 }

@@ -49,6 +49,16 @@ public class UserController {
                            @RequestParam("id") int id) {
         userService.deleteUser(id);
     }
+
+    @PostMapping(value = "/createNewBusinessUser")
+    public void createNewBusinessUser(HttpServletRequest request, HttpServletResponse response, @RequestBody JSONObject obj) {
+        userService.createBusinessUser(obj);
+    }
+
+    @PostMapping(value = "/login")
+    public JSONObject login(HttpServletRequest request, HttpServletResponse response, @RequestBody JSONObject obj) {
+        return userService.login(obj);
+    }
 //    /**
 //     * Delete the project in the databases, at the same time delete all the tasks in this project in the databases.
 //     *

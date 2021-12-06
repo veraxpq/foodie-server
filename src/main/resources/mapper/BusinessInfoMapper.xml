@@ -5,15 +5,13 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="email" jdbcType="VARCHAR" property="email" />
     <result column="username" jdbcType="VARCHAR" property="username" />
-    <result column="phone_number" jdbcType="VARCHAR" property="phoneNumber" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
     <result column="first_name" jdbcType="VARCHAR" property="firstName" />
     <result column="last_name" jdbcType="VARCHAR" property="lastName" />
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="zip_code" jdbcType="VARCHAR" property="zipCode" />
     <result column="restaurant_name" jdbcType="VARCHAR" property="restaurantName" />
     <result column="restaurant_address" jdbcType="VARCHAR" property="restaurantAddress" />
-    <result column="restaurant_city" jdbcType="VARCHAR" property="restaurantCity" />
-    <result column="restaurant_province" jdbcType="VARCHAR" property="restaurantProvince" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -74,8 +72,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, email, username, phone_number, first_name, last_name, password, zip_code, restaurant_name, 
-    restaurant_address, restaurant_city, restaurant_province
+    id, email, username, phone, first_name, last_name, password, zip_code, restaurant_name, 
+    restaurant_address
   </sql>
   <select id="selectByExample" parameterType="foodie.domain.model.BusinessInfoExample" resultMap="BaseResultMap">
     select
@@ -109,15 +107,13 @@
   </delete>
   <insert id="insert" parameterType="foodie.domain.model.BusinessInfo">
     insert into business_info (id, email, username, 
-      phone_number, first_name, last_name, 
+      phone, first_name, last_name, 
       password, zip_code, restaurant_name, 
-      restaurant_address, restaurant_city, restaurant_province
-      )
+      restaurant_address)
     values (#{id,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
-      #{phoneNumber,jdbcType=VARCHAR}, #{firstName,jdbcType=VARCHAR}, #{lastName,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{firstName,jdbcType=VARCHAR}, #{lastName,jdbcType=VARCHAR}, 
       #{password,jdbcType=VARCHAR}, #{zipCode,jdbcType=VARCHAR}, #{restaurantName,jdbcType=VARCHAR}, 
-      #{restaurantAddress,jdbcType=VARCHAR}, #{restaurantCity,jdbcType=VARCHAR}, #{restaurantProvince,jdbcType=VARCHAR}
-      )
+      #{restaurantAddress,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="foodie.domain.model.BusinessInfo">
     insert into business_info
@@ -131,8 +127,8 @@
       <if test="username != null">
         username,
       </if>
-      <if test="phoneNumber != null">
-        phone_number,
+      <if test="phone != null">
+        phone,
       </if>
       <if test="firstName != null">
         first_name,
@@ -152,12 +148,6 @@
       <if test="restaurantAddress != null">
         restaurant_address,
       </if>
-      <if test="restaurantCity != null">
-        restaurant_city,
-      </if>
-      <if test="restaurantProvince != null">
-        restaurant_province,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -169,8 +159,8 @@
       <if test="username != null">
         #{username,jdbcType=VARCHAR},
       </if>
-      <if test="phoneNumber != null">
-        #{phoneNumber,jdbcType=VARCHAR},
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
       </if>
       <if test="firstName != null">
         #{firstName,jdbcType=VARCHAR},
@@ -189,12 +179,6 @@
       </if>
       <if test="restaurantAddress != null">
         #{restaurantAddress,jdbcType=VARCHAR},
-      </if>
-      <if test="restaurantCity != null">
-        #{restaurantCity,jdbcType=VARCHAR},
-      </if>
-      <if test="restaurantProvince != null">
-        #{restaurantProvince,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -216,8 +200,8 @@
       <if test="record.username != null">
         username = #{record.username,jdbcType=VARCHAR},
       </if>
-      <if test="record.phoneNumber != null">
-        phone_number = #{record.phoneNumber,jdbcType=VARCHAR},
+      <if test="record.phone != null">
+        phone = #{record.phone,jdbcType=VARCHAR},
       </if>
       <if test="record.firstName != null">
         first_name = #{record.firstName,jdbcType=VARCHAR},
@@ -237,12 +221,6 @@
       <if test="record.restaurantAddress != null">
         restaurant_address = #{record.restaurantAddress,jdbcType=VARCHAR},
       </if>
-      <if test="record.restaurantCity != null">
-        restaurant_city = #{record.restaurantCity,jdbcType=VARCHAR},
-      </if>
-      <if test="record.restaurantProvince != null">
-        restaurant_province = #{record.restaurantProvince,jdbcType=VARCHAR},
-      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -253,15 +231,13 @@
     set id = #{record.id,jdbcType=INTEGER},
       email = #{record.email,jdbcType=VARCHAR},
       username = #{record.username,jdbcType=VARCHAR},
-      phone_number = #{record.phoneNumber,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
       first_name = #{record.firstName,jdbcType=VARCHAR},
       last_name = #{record.lastName,jdbcType=VARCHAR},
       password = #{record.password,jdbcType=VARCHAR},
       zip_code = #{record.zipCode,jdbcType=VARCHAR},
       restaurant_name = #{record.restaurantName,jdbcType=VARCHAR},
-      restaurant_address = #{record.restaurantAddress,jdbcType=VARCHAR},
-      restaurant_city = #{record.restaurantCity,jdbcType=VARCHAR},
-      restaurant_province = #{record.restaurantProvince,jdbcType=VARCHAR}
+      restaurant_address = #{record.restaurantAddress,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -275,8 +251,8 @@
       <if test="username != null">
         username = #{username,jdbcType=VARCHAR},
       </if>
-      <if test="phoneNumber != null">
-        phone_number = #{phoneNumber,jdbcType=VARCHAR},
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
       </if>
       <if test="firstName != null">
         first_name = #{firstName,jdbcType=VARCHAR},
@@ -296,12 +272,6 @@
       <if test="restaurantAddress != null">
         restaurant_address = #{restaurantAddress,jdbcType=VARCHAR},
       </if>
-      <if test="restaurantCity != null">
-        restaurant_city = #{restaurantCity,jdbcType=VARCHAR},
-      </if>
-      <if test="restaurantProvince != null">
-        restaurant_province = #{restaurantProvince,jdbcType=VARCHAR},
-      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -309,15 +279,13 @@
     update business_info
     set email = #{email,jdbcType=VARCHAR},
       username = #{username,jdbcType=VARCHAR},
-      phone_number = #{phoneNumber,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
       first_name = #{firstName,jdbcType=VARCHAR},
       last_name = #{lastName,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
       zip_code = #{zipCode,jdbcType=VARCHAR},
       restaurant_name = #{restaurantName,jdbcType=VARCHAR},
-      restaurant_address = #{restaurantAddress,jdbcType=VARCHAR},
-      restaurant_city = #{restaurantCity,jdbcType=VARCHAR},
-      restaurant_province = #{restaurantProvince,jdbcType=VARCHAR}
+      restaurant_address = #{restaurantAddress,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByExampleWithRowbounds" parameterType="foodie.domain.model.BusinessInfoExample" resultMap="BaseResultMap">

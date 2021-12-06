@@ -19,6 +19,8 @@ public class RestaurantController {
     @Autowired
     private APIService apiService;
 
+
+
     @GetMapping("/getRestaurant")
     public JSONObject getRestaurant(HttpServletRequest request, HttpServletResponse response, @RequestParam String cityName) {
         return apiService.searchRestaurantsByLocation(cityName);
