@@ -70,12 +70,15 @@ public class UserServiceImpl implements UserService {
         List<UserInfo> userInfos = userInfoMapper.selectByExample(example);
         JSONObject res = new JSONObject();
         if (userInfos == null || userInfos.size() == 0) {
-            res.put("error", "This email does not register.");
+            res.put("data", "This email does not register.");
+            res.put("status", 0);
         } else {
             if (userInfos.get(0).getPassword().equals(userLoginInfo.getPassword())) {
-                return (JSONObject) JSONObject.toJSON(userInfos.get(0));
+                res.put("status", 1);
+                res.put("data", (JSONObject) JSONObject.toJSON(userInfos.get(0)));
             } else {
-                res.put("error", "The password is not correct.");
+                res.put("status", 0);
+                res.put("data", "The password is not correct.");
             }
         }
         return res;
