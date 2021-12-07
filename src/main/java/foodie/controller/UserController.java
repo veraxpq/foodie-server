@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 @Service
 public class UserController {
 
-
     @Autowired
     private UserService userService;
 

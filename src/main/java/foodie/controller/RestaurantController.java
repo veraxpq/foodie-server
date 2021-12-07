@@ -1,6 +1,4 @@
 package foodie.controller;
-
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import foodie.service.APIService;
 import org.springframework.beans.factory.annotation.Autowired;
