@@ -35,6 +35,11 @@ public class UserController {
         userService.updateUserInfo(user);
     }
 
+    @PutMapping(value = "/updateBusinessUserInfo")
+    public void updateBusinessUserInfo(HttpServletRequest request, HttpServletResponse response, @RequestBody JSONObject user) {
+        userService.updateBusinessUserInfo(user);
+    }
+
     @PostMapping(value = "/createUser")
     public void createUser(HttpServletRequest request, HttpServletResponse response, @RequestBody JSONObject obj) {
         userService.createUser(obj);

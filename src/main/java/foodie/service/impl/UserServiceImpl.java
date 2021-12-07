@@ -2,9 +2,11 @@ package foodie.service.impl;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.sun.rowset.CachedRowSetImpl;
 import foodie.domain.client.BusinessInfoMapper;
 import foodie.domain.client.UserInfoMapper;
 import foodie.domain.model.BusinessInfo;
+import foodie.domain.model.BusinessInfoExample;
 import foodie.domain.model.UserInfo;
 import foodie.domain.model.UserInfoExample;
 import foodie.model.UserLoginInfo;
@@ -83,5 +85,14 @@ public class UserServiceImpl implements UserService {
             }
         }
         return res;
+    }
+
+    @Override
+    public void updateBusinessUserInfo(JSONObject user) {
+        BusinessInfo userInfo = user.toJavaObject(BusinessInfo.class);
+        BusinessInfoExample example = new BusinessInfoExample();
+        BusinessInfoExample.Criteria criteria = example.createCriteria();
+        criteria.andIdEqualTo(userInfo.getId());
+        businessInfoMapper.updateByExample(userInfo, example);
     }
 }
