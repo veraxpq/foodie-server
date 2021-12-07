@@ -15,8 +15,6 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.util.EntityUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.util.StringUtils;
 
 import java.io.IOException;
@@ -25,8 +23,6 @@ import java.util.Map;
 
 
 public class HttpUtils {
-
-    private static final Logger logger = LogManager.getLogger(HttpUtils.class.getName());
 
 
     public static String postRequest(String url, Map<String, String> params, String body, ContentType contentType) {
@@ -72,18 +68,14 @@ public class HttpUtils {
                     if (resEntity != null) {
                         result = EntityUtils.toString(resEntity, StandardCharsets.UTF_8);
                     }
-                    logger.error(String.format("请求失败：%s，错误码：%d，原因：%s", url, statusCode, result == null ? "" : result));
                     throw new RuntimeException();
                 }
             } catch (ClientProtocolException ex) {
-                logger.error(String.format("请求异常：%s，原因：%s", url, ExceptionUtils.getStackTrace(ex)));
                 throw new RuntimeException();
             } catch (IOException ex) {
-                logger.error(String.format("请求异常：%s，原因：%s", url, ExceptionUtils.getStackTrace(ex)));
                 throw new RuntimeException();
             }
         } catch (Exception ex) {
-            logger.error(String.format("请求异常：%s，原因：%s", url, ExceptionUtils.getStackTrace(ex)));
             throw new RuntimeException();
         }
     }
@@ -118,17 +110,13 @@ public class HttpUtils {
                 if (resEntity != null) {
                     result = EntityUtils.toString(resEntity, StandardCharsets.UTF_8);
                 }
-                logger.error(String.format("请求失败：%s，错误码：%d，原因：%s", url, statusCode, result == null ? "" : result));
                 throw new RuntimeException();
             }
         } catch (ClientProtocolException ex) {
-            logger.error(String.format("请求异常：%s，原因：%s", url, ExceptionUtils.getStackTrace(ex)));
             throw new RuntimeException();
         } catch (IOException ex) {
-            logger.error(String.format("请求异常：%s，原因：%s", url, ExceptionUtils.getStackTrace(ex)));
             throw new RuntimeException();
         } catch (Exception ex) {
-            logger.error(String.format("请求异常：%s，原因：%s", url, ExceptionUtils.getStackTrace(ex)));
             throw new RuntimeException();
         }
     }

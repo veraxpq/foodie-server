@@ -3,8 +3,6 @@ package foodie.controller;
 import com.alibaba.fastjson.JSONArray;
 import foodie.service.UserService;
 import com.alibaba.fastjson.JSONObject;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
@@ -17,7 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 @Service
 public class UserController {
 
-    private static final Logger logger = LogManager.getLogger(UserController.class.getName());
 
     @Autowired
     private UserService userService;

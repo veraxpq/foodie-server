@@ -13,7 +13,7 @@
         <!--                        connectionURL="jdbc:mysql://localhost:3306/ml_train_projects?useUnicode=true&amp;characterEncoding=utf8&amp;serverTimezone=GMT"-->
 
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
-                        connectionURL="jdbc:mysql://us-cdbr-east-04.cleardb.com:3306"
+                        connectionURL="jdbc:mysql://us-cdbr-east-04.cleardb.com:3306/heroku_bfd19da377d3441?useUnicode=true"
                         userId="b219bab2ac4594" password="814dbb0b" />
 
         <!-- targetProject:生成PO类的位置 -->
