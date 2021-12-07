@@ -11,8 +11,6 @@ public interface BusinessInfoMapper {
 
     int deleteByExample(BusinessInfoExample example);
 
-    int deleteByPrimaryKey(Integer id);
-
     int insert(BusinessInfo record);
 
     int insertSelective(BusinessInfo record);
@@ -21,13 +19,7 @@ public interface BusinessInfoMapper {
 
     List<BusinessInfo> selectByExample(BusinessInfoExample example);
 
-    BusinessInfo selectByPrimaryKey(Integer id);
-
     int updateByExampleSelective(@Param("record") BusinessInfo record, @Param("example") BusinessInfoExample example);
 
     int updateByExample(@Param("record") BusinessInfo record, @Param("example") BusinessInfoExample example);
-
-    int updateByPrimaryKeySelective(BusinessInfo record);
-
-    int updateByPrimaryKey(BusinessInfo record);
 }

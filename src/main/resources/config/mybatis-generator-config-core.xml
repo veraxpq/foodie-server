@@ -13,8 +13,8 @@
         <!--                        connectionURL="jdbc:mysql://localhost:3306/ml_train_projects?useUnicode=true&amp;characterEncoding=utf8&amp;serverTimezone=GMT"-->
 
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/foodie?useUnicode=true"
-            userId="root" password="" />
+                        connectionURL="jdbc:mysql://us-cdbr-east-04.cleardb.com:3306"
+                        userId="b219bab2ac4594" password="814dbb0b" />
 
         <!-- targetProject:生成PO类的位置 -->
         <javaModelGenerator targetPackage="foodie.domain.model"
@@ -33,19 +33,19 @@
 
         <!-- 指定数据库表 -->
 
-        <table schema="foodie" tableName="user_info" catalog="">
+        <table schema="heroku_bfd19da377d3441" tableName="user_info" catalog="">
             <property name="ignoreQualifiersAtRuntime" value="true" />
 <!--            <generatedKey column="log_id" sqlStatement="MySql" identity="true" />-->
             <ignoreColumn column="create_time"/>
         </table>
 
-        <table schema="foodie" tableName="user_type" catalog="">
+        <table schema="heroku_bfd19da377d3441" tableName="user_type" catalog="">
             <property name="ignoreQualifiersAtRuntime" value="true" />
             <!--            <generatedKey column="log_id" sqlStatement="MySql" identity="true" />-->
 <!--            <ignoreColumn column="insert_time"/>-->
         </table>
 
-        <table schema="foodie" tableName="business_info" catalog="">
+        <table schema="heroku_bfd19da377d3441" tableName="business_info" catalog="">
             <property name="ignoreQualifiersAtRuntime" value="true" />
             <!--            <generatedKey column="log_id" sqlStatement="MySql" identity="true" />-->
 <!--            <ignoreColumn column="insert_time"/>-->

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="foodie.domain.client.BusinessInfoMapper">
   <resultMap id="BaseResultMap" type="foodie.domain.model.BusinessInfo">
-    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="id" jdbcType="INTEGER" property="id" />
     <result column="email" jdbcType="VARCHAR" property="email" />
     <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="phone" jdbcType="VARCHAR" property="phone" />
@@ -89,16 +89,6 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from business_info
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from business_info
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
   <delete id="deleteByExample" parameterType="foodie.domain.model.BusinessInfoExample">
     delete from business_info
     <if test="_parameter != null">
@@ -241,52 +231,6 @@
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="foodie.domain.model.BusinessInfo">
-    update business_info
-    <set>
-      <if test="email != null">
-        email = #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="username != null">
-        username = #{username,jdbcType=VARCHAR},
-      </if>
-      <if test="phone != null">
-        phone = #{phone,jdbcType=VARCHAR},
-      </if>
-      <if test="firstName != null">
-        first_name = #{firstName,jdbcType=VARCHAR},
-      </if>
-      <if test="lastName != null">
-        last_name = #{lastName,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null">
-        password = #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="zipCode != null">
-        zip_code = #{zipCode,jdbcType=VARCHAR},
-      </if>
-      <if test="restaurantName != null">
-        restaurant_name = #{restaurantName,jdbcType=VARCHAR},
-      </if>
-      <if test="restaurantAddress != null">
-        restaurant_address = #{restaurantAddress,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="foodie.domain.model.BusinessInfo">
-    update business_info
-    set email = #{email,jdbcType=VARCHAR},
-      username = #{username,jdbcType=VARCHAR},
-      phone = #{phone,jdbcType=VARCHAR},
-      first_name = #{firstName,jdbcType=VARCHAR},
-      last_name = #{lastName,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR},
-      zip_code = #{zipCode,jdbcType=VARCHAR},
-      restaurant_name = #{restaurantName,jdbcType=VARCHAR},
-      restaurant_address = #{restaurantAddress,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByExampleWithRowbounds" parameterType="foodie.domain.model.BusinessInfoExample" resultMap="BaseResultMap">
     select

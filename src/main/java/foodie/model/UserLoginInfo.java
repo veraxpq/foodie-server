@@ -1,4 +1,4 @@
-package foodie.domain.model;
+package foodie.model;
 
 public class UserLoginInfo {
     private String email;
