@@ -1,2 +1,2 @@
 mvn clean install
-java -jar target/ml-training-platform-0.1.jar --server.port=$PORT
+java -Dserver.port=$PORT $JAVA_OPTS -jar target/ml-training-platform-0.1.jar
