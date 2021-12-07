@@ -15,11 +15,15 @@ public class RestaurantController {
     @Autowired
     private APIService apiService;
 
-    @GetMapping("/getRestaurant")
-    public JSONObject getRestaurant(HttpServletRequest request, HttpServletResponse response, @RequestParam String cityName) {
+    @GetMapping("/getRestaurantByLocation")
+    public JSONObject getRestaurantByLocation(HttpServletRequest request, HttpServletResponse response, @RequestParam String cityName) {
         return apiService.searchRestaurantsByLocation(cityName);
     }
 
+    @PostMapping("/getRestaurantByTermAndLocation")
+    public JSONObject getRestaurantByTermAndLocation(HttpServletRequest request, HttpServletResponse response, @RequestBody JSONObject obj) {
+        return apiService.searchRestaurantsByLocationAndTerm(obj);
+    }
 
     @RequestMapping(value = "/demo/test", method = RequestMethod.POST)
     public JSONObject reco(HttpServletRequest request, HttpServletResponse response,

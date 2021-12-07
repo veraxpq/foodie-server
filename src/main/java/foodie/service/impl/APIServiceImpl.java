@@ -22,4 +22,16 @@ public class APIServiceImpl implements APIService {
         JSONObject resultJson = (JSONObject) JSONObject.parse(result);
         return resultJson;
     }
+
+    @Override
+    public JSONObject searchRestaurantsByLocationAndTerm(JSONObject obj) {
+        String location = obj.getString("location");
+        JSONArray term = obj.getJSONArray("term");
+        Map<String, String> map = new HashMap<>();
+        map.put("term", term.toJSONString());
+        map.put("location", location);
+        String result = HttpUtils.getRequest(LOCATION_API, map);
+        JSONObject resultJson = (JSONObject) JSONObject.parse(result);
+        return resultJson;
+    }
 }

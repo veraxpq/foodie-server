@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="foodie.domain.client.RestaurantInfoMapper">
+  <resultMap id="BaseResultMap" type="foodie.domain.model.RestaurantInfo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="image_url" jdbcType="VARCHAR" property="imageUrl" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="review_count" jdbcType="INTEGER" property="reviewCount" />
+    <result column="categories" jdbcType="VARCHAR" property="categories" />
+    <result column="rating" jdbcType="VARCHAR" property="rating" />
+    <result column="coordinates" jdbcType="VARCHAR" property="coordinates" />
+    <result column="transactions" jdbcType="VARCHAR" property="transactions" />
+    <result column="price" jdbcType="VARCHAR" property="price" />
+    <result column="display_phone" jdbcType="VARCHAR" property="displayPhone" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="distance" jdbcType="DOUBLE" property="distance" />
+    <result column="location" jdbcType="VARCHAR" property="location" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, name, image_url, url, review_count, categories, rating, coordinates, transactions, 
+    price, display_phone, phone, distance, location
+  </sql>
+  <select id="selectByExample" parameterType="foodie.domain.model.RestaurantInfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from restaurant_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from restaurant_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from restaurant_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="foodie.domain.model.RestaurantInfoExample">
+    delete from restaurant_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="foodie.domain.model.RestaurantInfo">
+    insert into restaurant_info (id, name, image_url, 
+      url, review_count, categories, 
+      rating, coordinates, transactions, 
+      price, display_phone, phone, 
+      distance, location)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{imageUrl,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR}, #{reviewCount,jdbcType=INTEGER}, #{categories,jdbcType=VARCHAR}, 
+      #{rating,jdbcType=VARCHAR}, #{coordinates,jdbcType=VARCHAR}, #{transactions,jdbcType=VARCHAR}, 
+      #{price,jdbcType=VARCHAR}, #{displayPhone,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{distance,jdbcType=DOUBLE}, #{location,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="foodie.domain.model.RestaurantInfo">
+    insert into restaurant_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="imageUrl != null">
+        image_url,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+      <if test="reviewCount != null">
+        review_count,
+      </if>
+      <if test="categories != null">
+        categories,
+      </if>
+      <if test="rating != null">
+        rating,
+      </if>
+      <if test="coordinates != null">
+        coordinates,
+      </if>
+      <if test="transactions != null">
+        transactions,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="displayPhone != null">
+        display_phone,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="distance != null">
+        distance,
+      </if>
+      <if test="location != null">
+        location,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="imageUrl != null">
+        #{imageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewCount != null">
+        #{reviewCount,jdbcType=INTEGER},
+      </if>
+      <if test="categories != null">
+        #{categories,jdbcType=VARCHAR},
+      </if>
+      <if test="rating != null">
+        #{rating,jdbcType=VARCHAR},
+      </if>
+      <if test="coordinates != null">
+        #{coordinates,jdbcType=VARCHAR},
+      </if>
+      <if test="transactions != null">
+        #{transactions,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="displayPhone != null">
+        #{displayPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="distance != null">
+        #{distance,jdbcType=DOUBLE},
+      </if>
+      <if test="location != null">
+        #{location,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="foodie.domain.model.RestaurantInfoExample" resultType="java.lang.Long">
+    select count(*) from restaurant_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update restaurant_info
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.imageUrl != null">
+        image_url = #{record.imageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.url != null">
+        url = #{record.url,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reviewCount != null">
+        review_count = #{record.reviewCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.categories != null">
+        categories = #{record.categories,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rating != null">
+        rating = #{record.rating,jdbcType=VARCHAR},
+      </if>
+      <if test="record.coordinates != null">
+        coordinates = #{record.coordinates,jdbcType=VARCHAR},
+      </if>
+      <if test="record.transactions != null">
+        transactions = #{record.transactions,jdbcType=VARCHAR},
+      </if>
+      <if test="record.price != null">
+        price = #{record.price,jdbcType=VARCHAR},
+      </if>
+      <if test="record.displayPhone != null">
+        display_phone = #{record.displayPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null">
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.distance != null">
+        distance = #{record.distance,jdbcType=DOUBLE},
+      </if>
+      <if test="record.location != null">
+        location = #{record.location,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update restaurant_info
+    set id = #{record.id,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      image_url = #{record.imageUrl,jdbcType=VARCHAR},
+      url = #{record.url,jdbcType=VARCHAR},
+      review_count = #{record.reviewCount,jdbcType=INTEGER},
+      categories = #{record.categories,jdbcType=VARCHAR},
+      rating = #{record.rating,jdbcType=VARCHAR},
+      coordinates = #{record.coordinates,jdbcType=VARCHAR},
+      transactions = #{record.transactions,jdbcType=VARCHAR},
+      price = #{record.price,jdbcType=VARCHAR},
+      display_phone = #{record.displayPhone,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      distance = #{record.distance,jdbcType=DOUBLE},
+      location = #{record.location,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="foodie.domain.model.RestaurantInfo">
+    update restaurant_info
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="imageUrl != null">
+        image_url = #{imageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewCount != null">
+        review_count = #{reviewCount,jdbcType=INTEGER},
+      </if>
+      <if test="categories != null">
+        categories = #{categories,jdbcType=VARCHAR},
+      </if>
+      <if test="rating != null">
+        rating = #{rating,jdbcType=VARCHAR},
+      </if>
+      <if test="coordinates != null">
+        coordinates = #{coordinates,jdbcType=VARCHAR},
+      </if>
+      <if test="transactions != null">
+        transactions = #{transactions,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="displayPhone != null">
+        display_phone = #{displayPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="distance != null">
+        distance = #{distance,jdbcType=DOUBLE},
+      </if>
+      <if test="location != null">
+        location = #{location,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="foodie.domain.model.RestaurantInfo">
+    update restaurant_info
+    set name = #{name,jdbcType=VARCHAR},
+      image_url = #{imageUrl,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      review_count = #{reviewCount,jdbcType=INTEGER},
+      categories = #{categories,jdbcType=VARCHAR},
+      rating = #{rating,jdbcType=VARCHAR},
+      coordinates = #{coordinates,jdbcType=VARCHAR},
+      transactions = #{transactions,jdbcType=VARCHAR},
+      price = #{price,jdbcType=VARCHAR},
+      display_phone = #{displayPhone,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      distance = #{distance,jdbcType=DOUBLE},
+      location = #{location,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByExampleWithRowbounds" parameterType="foodie.domain.model.RestaurantInfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from restaurant_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>
