@@ -54,7 +54,7 @@ public class ControllerExceptionHandler {
         logger.debug(ExceptionUtils.getStackTrace(e));
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json;charset=utf-8");
-        return new ResponseEntity<ErrorMessage>(new ErrorMessage(1002, "The email has been registered, please login."), headers, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<ErrorMessage>(new ErrorMessage(1002, "illegal id"), headers, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(value = MultipartException.class)
