@@ -209,4 +209,9 @@ public class UserServiceImpl implements UserService {
     public void deleteRestaurantByRestaurantId(int id) {
         restaurantInfoMapper.deleteByPrimaryKey(id);
     }
+
+    @Override
+    public void deleteReviewById(int id) {
+        reviewInfoMapper.deleteByPrimaryKey(id);
+    }
 }

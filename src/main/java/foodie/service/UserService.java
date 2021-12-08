@@ -17,6 +17,7 @@ public interface UserService {
     JSONArray getSavedRestaurantsByUserId(int id);
     void deleteSavedRestaurant(JSONObject obj);
     void postReviews(JSONObject obj);
+    void deleteReviewById(int id);
 
     JSONArray getReviewsByUserId(int id);
 

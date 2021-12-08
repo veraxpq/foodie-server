@@ -116,4 +116,9 @@ public class UserController {
         return new Result("", 1);
     }
 
+    @DeleteMapping(value = "/deleteReviewById")
+    public Result deleteReviewById(HttpServletRequest request, HttpServletResponse response, @RequestParam("reviewId") int reviewId) {
+        userService.deleteReviewById(reviewId);
+        return new Result("", 1);
+    }
 }
