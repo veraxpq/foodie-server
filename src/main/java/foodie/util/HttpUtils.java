@@ -1,6 +1,5 @@
 package foodie.util;
 
-import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -110,7 +109,7 @@ public class HttpUtils {
                 if (resEntity != null) {
                     result = EntityUtils.toString(resEntity, StandardCharsets.UTF_8);
                 }
-                throw new RuntimeException();
+                return result;
             }
         } catch (ClientProtocolException ex) {
             throw new RuntimeException();

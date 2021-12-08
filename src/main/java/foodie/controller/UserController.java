@@ -59,8 +59,37 @@ public class UserController {
 
     @PostMapping(value = "/login")
     public Result<JSONObject> login(HttpServletRequest request, HttpServletResponse response, @RequestBody JSONObject obj) {
-        JSONObject res = userService.login(obj);
-        return new Result(res, 1);
-
+        return userService.login(obj);
     }
+
+    @PostMapping(value = "/saveRestaurant")
+    public Result<JSONObject> saveRestaurant(HttpServletRequest request, HttpServletResponse response, @RequestBody JSONObject obj) {
+        userService.saveRestaurant(obj);
+        return new Result("", 1);
+    }
+
+    @GetMapping(value="/getSavedRestaurantsByUserId")
+    public Result<JSONArray> getSavedRestaurantsByUserId(HttpServletRequest request, HttpServletResponse response, @RequestParam("id") int id) {
+        JSONArray restaurants = userService.getSavedRestaurantsByUserId(id);
+        return new Result<>(restaurants, 1);
+    }
+
+    @PostMapping(value = "/deleteSavedRestaurant")
+    public Result<JSONObject> deleteSavedRestaurant(HttpServletRequest request, HttpServletResponse response, @RequestBody JSONObject obj) {
+        userService.deleteSavedRestaurant(obj);
+        return new Result("", 1);
+    }
+
+    @PostMapping(value = "/postReviews")
+    public Result<JSONObject> postReviews(HttpServletRequest request, HttpServletResponse response, @RequestBody JSONObject obj) {
+        userService.postReviews(obj);
+        return new Result("", 1);
+    }
+
+    @GetMapping(value="/getReviewsByUserId")
+    public Result<JSONArray> getReviewsByUserId(HttpServletRequest request, HttpServletResponse response, @RequestParam("id") int id) {
+        JSONArray reviews = userService.getReviewsByUserId(id);
+        return new Result<>(reviews, 1);
+    }
+
 }

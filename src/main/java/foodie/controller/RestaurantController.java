@@ -1,4 +1,5 @@
 package foodie.controller;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import foodie.common.Result;
 import foodie.service.APIService;
@@ -27,7 +28,12 @@ public class RestaurantController {
     }
 
     @GetMapping("/getRestaurantById")
-    public Result<JSONObject> getRestaurantById(HttpServletRequest request, HttpServletResponse response, @RequestParam String id) {
-        return new Result<>(apiService.getRestaurantInfoById(id), 1);
+    public Result<JSONObject> getRestaurantById(HttpServletRequest request, HttpServletResponse response, @RequestParam String restaurantId) {
+        return new Result<>(apiService.getRestaurantInfoById(restaurantId), 1);
+    }
+
+    @GetMapping("/getReviewsByRestaurantId")
+    public Result<JSONArray> getReviewsByRestaurantId(HttpServletRequest request, HttpServletResponse response, @RequestParam String restaurantId) {
+        return new Result<>(apiService.getReviewsByRestaurantId(restaurantId), 1);
     }
 }

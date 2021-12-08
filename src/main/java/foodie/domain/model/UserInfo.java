@@ -19,6 +19,8 @@ public class UserInfo {
 
     private Date dayOfBirth;
 
+    private String savedRestaurants;
+
     public Integer getId() {
         return id;
     }
@@ -81,5 +83,13 @@ public class UserInfo {
 
     public void setDayOfBirth(Date dayOfBirth) {
         this.dayOfBirth = dayOfBirth;
+    }
+
+    public String getSavedRestaurants() {
+        return savedRestaurants;
+    }
+
+    public void setSavedRestaurants(String savedRestaurants) {
+        this.savedRestaurants = savedRestaurants;
     }
 }

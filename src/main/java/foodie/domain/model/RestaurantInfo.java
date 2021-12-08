@@ -29,6 +29,8 @@ public class RestaurantInfo {
 
     private String location;
 
+    private Integer userId;
+
     public Integer getId() {
         return id;
     }
@@ -139,5 +141,13 @@ public class RestaurantInfo {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 }

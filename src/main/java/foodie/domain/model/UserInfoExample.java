@@ -634,6 +634,76 @@ public class UserInfoExample {
             addCriterion("day_of_birth not between", value1, value2, "dayOfBirth");
             return (Criteria) this;
         }
+
+        public Criteria andSavedRestaurantsIsNull() {
+            addCriterion("saved_restaurants is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSavedRestaurantsIsNotNull() {
+            addCriterion("saved_restaurants is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSavedRestaurantsEqualTo(String value) {
+            addCriterion("saved_restaurants =", value, "savedRestaurants");
+            return (Criteria) this;
+        }
+
+        public Criteria andSavedRestaurantsNotEqualTo(String value) {
+            addCriterion("saved_restaurants <>", value, "savedRestaurants");
+            return (Criteria) this;
+        }
+
+        public Criteria andSavedRestaurantsGreaterThan(String value) {
+            addCriterion("saved_restaurants >", value, "savedRestaurants");
+            return (Criteria) this;
+        }
+
+        public Criteria andSavedRestaurantsGreaterThanOrEqualTo(String value) {
+            addCriterion("saved_restaurants >=", value, "savedRestaurants");
+            return (Criteria) this;
+        }
+
+        public Criteria andSavedRestaurantsLessThan(String value) {
+            addCriterion("saved_restaurants <", value, "savedRestaurants");
+            return (Criteria) this;
+        }
+
+        public Criteria andSavedRestaurantsLessThanOrEqualTo(String value) {
+            addCriterion("saved_restaurants <=", value, "savedRestaurants");
+            return (Criteria) this;
+        }
+
+        public Criteria andSavedRestaurantsLike(String value) {
+            addCriterion("saved_restaurants like", value, "savedRestaurants");
+            return (Criteria) this;
+        }
+
+        public Criteria andSavedRestaurantsNotLike(String value) {
+            addCriterion("saved_restaurants not like", value, "savedRestaurants");
+            return (Criteria) this;
+        }
+
+        public Criteria andSavedRestaurantsIn(List<String> values) {
+            addCriterion("saved_restaurants in", values, "savedRestaurants");
+            return (Criteria) this;
+        }
+
+        public Criteria andSavedRestaurantsNotIn(List<String> values) {
+            addCriterion("saved_restaurants not in", values, "savedRestaurants");
+            return (Criteria) this;
+        }
+
+        public Criteria andSavedRestaurantsBetween(String value1, String value2) {
+            addCriterion("saved_restaurants between", value1, value2, "savedRestaurants");
+            return (Criteria) this;
+        }
+
+        public Criteria andSavedRestaurantsNotBetween(String value1, String value2) {
+            addCriterion("saved_restaurants not between", value1, value2, "savedRestaurants");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {
