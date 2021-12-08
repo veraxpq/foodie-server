@@ -11,6 +11,7 @@
     <result column="description" jdbcType="VARCHAR" property="description" />
     <result column="day_of_birth" jdbcType="TIMESTAMP" property="dayOfBirth" />
     <result column="saved_restaurants" jdbcType="VARCHAR" property="savedRestaurants" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -71,7 +72,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, email, password, zip_code, user_type, avatar, description, day_of_birth, saved_restaurants
+    id, email, password, zip_code, user_type, avatar, description, day_of_birth, saved_restaurants, 
+    username
   </sql>
   <select id="selectByExample" parameterType="foodie.domain.model.UserInfoExample" resultMap="BaseResultMap">
     select
@@ -106,12 +108,12 @@
   <insert id="insert" parameterType="foodie.domain.model.UserInfo">
     insert into user_info (id, email, password, 
       zip_code, user_type, avatar, 
-      description, day_of_birth, saved_restaurants
-      )
+      description, day_of_birth, saved_restaurants, 
+      username)
     values (#{id,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{zipCode,jdbcType=VARCHAR}, #{userType,jdbcType=INTEGER}, #{avatar,jdbcType=VARCHAR}, 
-      #{description,jdbcType=VARCHAR}, #{dayOfBirth,jdbcType=TIMESTAMP}, #{savedRestaurants,jdbcType=VARCHAR}
-      )
+      #{description,jdbcType=VARCHAR}, #{dayOfBirth,jdbcType=TIMESTAMP}, #{savedRestaurants,jdbcType=VARCHAR}, 
+      #{username,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="foodie.domain.model.UserInfo">
     insert into user_info
@@ -143,6 +145,9 @@
       <if test="savedRestaurants != null">
         saved_restaurants,
       </if>
+      <if test="username != null">
+        username,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -171,6 +176,9 @@
       </if>
       <if test="savedRestaurants != null">
         #{savedRestaurants,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -210,6 +218,9 @@
       <if test="record.savedRestaurants != null">
         saved_restaurants = #{record.savedRestaurants,jdbcType=VARCHAR},
       </if>
+      <if test="record.username != null">
+        username = #{record.username,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -225,7 +236,8 @@
       avatar = #{record.avatar,jdbcType=VARCHAR},
       description = #{record.description,jdbcType=VARCHAR},
       day_of_birth = #{record.dayOfBirth,jdbcType=TIMESTAMP},
-      saved_restaurants = #{record.savedRestaurants,jdbcType=VARCHAR}
+      saved_restaurants = #{record.savedRestaurants,jdbcType=VARCHAR},
+      username = #{record.username,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -257,6 +269,9 @@
       <if test="savedRestaurants != null">
         saved_restaurants = #{savedRestaurants,jdbcType=VARCHAR},
       </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -269,7 +284,8 @@
       avatar = #{avatar,jdbcType=VARCHAR},
       description = #{description,jdbcType=VARCHAR},
       day_of_birth = #{dayOfBirth,jdbcType=TIMESTAMP},
-      saved_restaurants = #{savedRestaurants,jdbcType=VARCHAR}
+      saved_restaurants = #{savedRestaurants,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByExampleWithRowbounds" parameterType="foodie.domain.model.UserInfoExample" resultMap="BaseResultMap">
