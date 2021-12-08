@@ -6,4 +6,5 @@ import com.alibaba.fastjson.JSONObject;
 public interface APIService {
     JSONObject searchRestaurantsByLocation(String cityName);
     JSONObject searchRestaurantsByLocationAndTerm(JSONObject obj);
+    JSONObject getRestaurantInfoById(String id);
 }

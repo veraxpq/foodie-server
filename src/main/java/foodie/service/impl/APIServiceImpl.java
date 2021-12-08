@@ -13,6 +13,8 @@ import java.util.Map;
 public class APIServiceImpl implements APIService {
 
     private final String LOCATION_API = "https://api.yelp.com/v3/businesses/search";
+
+    private final String RESTAURANT_DETAIL_API = "https://api.yelp.com/v3/businesses/";
     @Override
     public JSONObject searchRestaurantsByLocation(String cityName) {
         Map<String, String> map = new HashMap<>();
@@ -33,5 +35,12 @@ public class APIServiceImpl implements APIService {
         String result = HttpUtils.getRequest(LOCATION_API, map);
         JSONObject resultJson = (JSONObject) JSONObject.parse(result);
         return resultJson;
+    }
+
+    @Override
+    public JSONObject getRestaurantInfoById(String id) {
+        String url = RESTAURANT_DETAIL_API + id;
+        String result = HttpUtils.getRequest(url, null);
+        return (JSONObject) JSONObject.parse(result);
     }
 }

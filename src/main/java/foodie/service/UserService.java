@@ -7,7 +7,7 @@ public interface UserService {
 
     JSONObject login(JSONObject user);
     //for customer
-    JSONArray getUserInfo();
+    JSONObject getUserInfo(int id);
     void updateBusinessUserInfo(JSONObject user);
     void updateUserInfo(JSONObject user);
     void deleteUser(int id);

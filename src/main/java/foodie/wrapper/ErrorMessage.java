@@ -1,19 +1,33 @@
 package foodie.wrapper;
 
 public class ErrorMessage {
-    private String message;
+    private Integer status;
+    private String data;
 
     public ErrorMessage() {}
 
-    public ErrorMessage(String message) {
-        this.message = message;
+    public ErrorMessage(String data) {
+        this.data = data;
+    }
+
+    public ErrorMessage(Integer status, String data) {
+        this.status = status;
+        this.data = data;
+    }
+
+    public Integer getCode() {
+        return status;
+    }
+
+    public void setCode(Integer status) {
+        this.status = status;
     }
 
     public String getMessage() {
-        return message;
+        return data;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setMessage(String data) {
+        this.data = data;
     }
 }

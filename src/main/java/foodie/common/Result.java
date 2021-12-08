@@ -2,16 +2,11 @@ package foodie.common;
 
 public class Result<T> {
     T data;
-    Boolean success;
-    String message;
-    String cost;
+    int status;
 
-    public String getCost() {
-        return cost;
-    }
-
-    public void setCost(String cost) {
-        this.cost = cost;
+    public Result(T data, int status) {
+        this.data = data;
+        this.status = status;
     }
 
     public T getData() {
@@ -22,19 +17,11 @@ public class Result<T> {
         this.data = data;
     }
 
-    public Boolean getSuccess() {
-        return success;
+    public int getStatus() {
+        return status;
     }
 
-    public void setSuccess(Boolean success) {
-        this.success = success;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

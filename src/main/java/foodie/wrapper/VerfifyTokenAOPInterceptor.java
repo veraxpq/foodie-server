@@ -39,7 +39,7 @@ public class VerfifyTokenAOPInterceptor {
 
         Map<String, Claim> userData = JwtUtils.verifyToken(token);
         if (userData == null) {
-            throw new UnauthorizedException("认证失败，请重新登录！");
+            throw new UnauthorizedException("Please login!");
         }
 
         String email = userData.get("email").asString();

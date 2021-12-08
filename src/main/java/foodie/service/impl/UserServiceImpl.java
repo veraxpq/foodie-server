@@ -11,7 +11,10 @@ import foodie.domain.model.UserInfo;
 import foodie.domain.model.UserInfoExample;
 import foodie.model.UserLoginInfo;
 import foodie.service.UserService;
+import foodie.util.ExceptionUtil;
+import foodie.util.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,14 +28,10 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private BusinessInfoMapper businessInfoMapper;
 
-    @Autowired
-    public JSONArray getUserInfo() {
-        UserInfoExample example = new UserInfoExample();
-//        UserInfoExample.Criteria criteria = example.createCriteria();
-//        criteria.andIdGreaterThan(1);
-        List<UserInfo> userInfos = userInfoMapper.selectByExample(example);
-        JSONArray array = (JSONArray) JSONArray.toJSON(userInfos);
-        return array;
+    @Override
+    public JSONObject getUserInfo(int id) {
+        UserInfo userInfos = userInfoMapper.selectByPrimaryKey(id);
+        return (JSONObject) JSONObject.toJSON(userInfos);
     }
 
     @Override
@@ -53,7 +52,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void createUser(JSONObject user) {
+    public void createUser(JSONObject user) throws DuplicateKeyException {
         UserInfo userInfo = user.toJavaObject(UserInfo.class);
         userInfoMapper.insert(userInfo);
     }
@@ -74,13 +73,13 @@ public class UserServiceImpl implements UserService {
         JSONObject res = new JSONObject();
         if (userInfos == null || userInfos.size() == 0) {
             res.put("data", "This email does not register.");
-            res.put("status", 0);
         } else {
             if (userInfos.get(0).getPassword().equals(userLoginInfo.getPassword())) {
+                JSONObject userJson = (JSONObject) JSONObject.toJSON(userInfos.get(0));
+                userJson.put("token", JwtUtils.createToken(userLoginInfo));
                 res.put("status", 1);
-                res.put("data", (JSONObject) JSONObject.toJSON(userInfos.get(0)));
+                res.put("data", userJson);
             } else {
-                res.put("status", 0);
                 res.put("data", "The password is not correct.");
             }
         }

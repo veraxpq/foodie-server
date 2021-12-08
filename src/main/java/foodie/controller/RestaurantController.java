@@ -1,5 +1,6 @@
 package foodie.controller;
 import com.alibaba.fastjson.JSONObject;
+import foodie.common.Result;
 import foodie.service.APIService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,20 +17,17 @@ public class RestaurantController {
     private APIService apiService;
 
     @GetMapping("/getRestaurantByLocation")
-    public JSONObject getRestaurantByLocation(HttpServletRequest request, HttpServletResponse response, @RequestParam String cityName) {
-        return apiService.searchRestaurantsByLocation(cityName);
+    public Result<JSONObject> getRestaurantByLocation(HttpServletRequest request, HttpServletResponse response, @RequestParam String cityName) {
+        return new Result<>(apiService.searchRestaurantsByLocation(cityName), 1);
     }
 
     @PostMapping("/getRestaurantByTermAndLocation")
-    public JSONObject getRestaurantByTermAndLocation(HttpServletRequest request, HttpServletResponse response, @RequestBody JSONObject obj) {
-        return apiService.searchRestaurantsByLocationAndTerm(obj);
+    public Result<JSONObject> getRestaurantByTermAndLocation(HttpServletRequest request, HttpServletResponse response, @RequestBody JSONObject obj) {
+        return new Result<>(apiService.searchRestaurantsByLocationAndTerm(obj), 1);
     }
 
-    @RequestMapping(value = "/demo/test", method = RequestMethod.POST)
-    public JSONObject reco(HttpServletRequest request, HttpServletResponse response,
-                           @RequestBody String input) {
-        JSONObject obj = new JSONObject();
-        obj.put("input", input);
-        return obj;
+    @GetMapping("/getRestaurantById")
+    public Result<JSONObject> getRestaurantById(HttpServletRequest request, HttpServletResponse response, @RequestParam String id) {
+        return new Result<>(apiService.getRestaurantInfoById(id), 1);
     }
 }
