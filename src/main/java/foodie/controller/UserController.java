@@ -92,4 +92,28 @@ public class UserController {
         return new Result<>(reviews, 1);
     }
 
+    @PostMapping(value = "/postRestaurant")
+    public Result<JSONObject> postRestaurant(HttpServletRequest request, HttpServletResponse response, @RequestBody JSONObject obj) {
+        userService.postRestaurant(obj);
+        return new Result("", 1);
+    }
+
+    @GetMapping(value="/getRestaurantByUserId")
+    public Result<JSONArray> getRestaurantByUserId(HttpServletRequest request, HttpServletResponse response, @RequestParam("id") int id) {
+        JSONArray obj = userService.getRestaurantByUserId(id);
+        return new Result<>(obj, 1);
+    }
+
+    @PostMapping(value = "/updateRestaurantByRestaurantId")
+    public Result<JSONObject> updateRestaurantByRestaurantId(HttpServletRequest request, HttpServletResponse response, @RequestBody JSONObject obj) {
+        userService.updateRestaurantByRestaurantId(obj);
+        return new Result("", 1);
+    }
+
+    @GetMapping(value="/deleteRestaurantByRestaurantId")
+    public Result deleteRestaurantByRestaurantId(HttpServletRequest request, HttpServletResponse response, @RequestParam("restaurantId") int restaurantId) {
+        userService.deleteRestaurantByRestaurantId(restaurantId);
+        return new Result("", 1);
+    }
+
 }

@@ -23,8 +23,8 @@ public interface UserService {
     //for businuess user
     void createBusinessUser(JSONObject user);
     void postRestaurant(JSONObject restaurant);
-    JSONObject getRestaurantByUserId(int id);
-    void updateRestaurantByRestaurantId(int id);
+    JSONArray getRestaurantByUserId(int id);
+    void updateRestaurantByRestaurantId(JSONObject obj);
     void deleteRestaurantByRestaurantId(int id);
 
 }

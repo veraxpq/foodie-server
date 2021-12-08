@@ -2,7 +2,6 @@ package foodie.service.impl;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.sun.rowset.CachedRowSetImpl;
 import foodie.common.Result;
 import foodie.domain.client.BusinessInfoMapper;
 import foodie.domain.client.RestaurantInfoMapper;
@@ -11,10 +10,8 @@ import foodie.domain.client.UserInfoMapper;
 import foodie.domain.model.*;
 import foodie.model.UserLoginInfo;
 import foodie.service.UserService;
-import foodie.util.ExceptionUtil;
 import foodie.util.HttpUtils;
 import foodie.util.JwtUtils;
-import org.hibernate.Criteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
@@ -167,6 +164,11 @@ public class UserServiceImpl implements UserService {
                 break;
             }
         }
+        userInfo.setSavedRestaurants(array.toString());
+        UserInfoExample example = new UserInfoExample();
+        UserInfoExample.Criteria criteria = example.createCriteria();
+        criteria.andIdEqualTo(userId);
+        userInfoMapper.updateByExampleSelective(userInfo, example);
     }
 
     @Override
@@ -185,17 +187,26 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public JSONObject getRestaurantByUserId(int id) {
-        return null;
+    public JSONArray getRestaurantByUserId(int id) {
+        RestaurantInfoExample example = new RestaurantInfoExample();
+        RestaurantInfoExample.Criteria criteria = example.createCriteria();
+        criteria.andUserIdEqualTo(id);
+        List<RestaurantInfo> restaurantInfos = restaurantInfoMapper.selectByExample(example);
+        JSONArray object = (JSONArray) JSONArray.toJSON(restaurantInfos);
+        return object;
     }
 
     @Override
-    public void updateRestaurantByRestaurantId(int id) {
-
+    public void updateRestaurantByRestaurantId(JSONObject obj) {
+        RestaurantInfo restaurantInfo = obj.toJavaObject(RestaurantInfo.class);
+        RestaurantInfoExample example = new RestaurantInfoExample();
+        RestaurantInfoExample.Criteria criteria = example.createCriteria();
+        criteria.andIdEqualTo(restaurantInfo.getId());
+        restaurantInfoMapper.updateByExampleSelective(restaurantInfo, example);
     }
 
     @Override
     public void deleteRestaurantByRestaurantId(int id) {
-
+        restaurantInfoMapper.deleteByPrimaryKey(id);
     }
 }
