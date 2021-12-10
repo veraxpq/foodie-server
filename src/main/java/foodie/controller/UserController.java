@@ -2,6 +2,8 @@ package foodie.controller;
 
 import com.alibaba.fastjson.JSONArray;
 import foodie.common.Result;
+import foodie.domain.model.BusinessInfo;
+import foodie.domain.model.UserInfo;
 import foodie.service.UserService;
 import com.alibaba.fastjson.JSONObject;
 import foodie.wrapper.VerifyToken;

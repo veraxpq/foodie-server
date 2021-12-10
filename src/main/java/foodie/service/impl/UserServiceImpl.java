@@ -10,6 +10,7 @@ import foodie.domain.client.UserInfoMapper;
 import foodie.domain.model.*;
 import foodie.model.UserLoginInfo;
 import foodie.service.UserService;
+import foodie.util.CipherHelper;
 import foodie.util.HttpUtils;
 import foodie.util.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,6 +69,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public void createBusinessUser(JSONObject user) {
         BusinessInfo businessInfo = user.toJavaObject(BusinessInfo.class);
+        UserInfo userInfo = new UserInfo();
+        userInfo.setEmail(businessInfo.getEmail());
+        userInfo.setPassword(businessInfo.getPassword());
+        userInfo.setUserType(2);
+        userInfo.setUsername(businessInfo.getUsername());
+        userInfoMapper.insert(userInfo);
         businessInfoMapper.insert(businessInfo);
     }
 
@@ -78,11 +85,13 @@ public class UserServiceImpl implements UserService {
         UserInfoExample.Criteria criteria = example.createCriteria();
         criteria.andEmailEqualTo(userLoginInfo.getEmail());
         List<UserInfo> userInfos = userInfoMapper.selectByExample(example);
-        JSONObject res = new JSONObject();
+
         if (userInfos == null || userInfos.size() == 0) {
             return new Result("This email does not register.", 0 );
         } else {
-            if (userInfos.get(0).getPassword().equals(userLoginInfo.getPassword())) {
+            String passWdHash = CipherHelper.getSHA256(userLoginInfo.getPassword());
+            if (userInfos.get(0).getPassword().equals(passWdHash)) {
+                userLoginInfo.setPassword(passWdHash);
                 JSONObject userJson = (JSONObject) JSONObject.toJSON(userInfos.get(0));
                 userJson.put("token", JwtUtils.createToken(userLoginInfo));
                 return new Result(userJson,1);
