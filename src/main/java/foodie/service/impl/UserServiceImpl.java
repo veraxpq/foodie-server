@@ -8,7 +8,9 @@ import foodie.domain.client.RestaurantInfoMapper;
 import foodie.domain.client.ReviewInfoMapper;
 import foodie.domain.client.UserInfoMapper;
 import foodie.domain.model.*;
+import foodie.model.BusinessInfo;
 import foodie.model.UserLoginInfo;
+import foodie.model.UserText;
 import foodie.service.UserService;
 import foodie.util.CipherHelper;
 import foodie.util.HttpUtils;
@@ -18,6 +20,7 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import javax.jws.soap.SOAPBinding;
 import java.util.List;
 
 @Service
@@ -63,19 +66,17 @@ public class UserServiceImpl implements UserService {
     @Override
     public void createUser(JSONObject user) throws DuplicateKeyException {
         UserInfo userInfo = user.toJavaObject(UserInfo.class);
+        String passWdHash = CipherHelper.getSHA256(userInfo.getPassword());
+        userInfo.setPassword(passWdHash);
         userInfoMapper.insert(userInfo);
     }
 
     @Override
     public void createBusinessUser(JSONObject user) {
-        BusinessInfo businessInfo = user.toJavaObject(BusinessInfo.class);
-        UserInfo userInfo = new UserInfo();
-        userInfo.setEmail(businessInfo.getEmail());
-        userInfo.setPassword(businessInfo.getPassword());
-        userInfo.setUserType(2);
-        userInfo.setUsername(businessInfo.getUsername());
-        userInfoMapper.insert(userInfo);
-        businessInfoMapper.insert(businessInfo);
+        UserInfo businessInfo = user.toJavaObject(UserInfo.class);
+        String passWdHash = CipherHelper.getSHA256(businessInfo.getPassword());
+        businessInfo.setPassword(passWdHash);
+        userInfoMapper.insert(businessInfo);
     }
 
     @Override
@@ -85,16 +86,18 @@ public class UserServiceImpl implements UserService {
         UserInfoExample.Criteria criteria = example.createCriteria();
         criteria.andEmailEqualTo(userLoginInfo.getEmail());
         List<UserInfo> userInfos = userInfoMapper.selectByExample(example);
-
         if (userInfos == null || userInfos.size() == 0) {
             return new Result("This email does not register.", 0 );
         } else {
             String passWdHash = CipherHelper.getSHA256(userLoginInfo.getPassword());
             if (userInfos.get(0).getPassword().equals(passWdHash)) {
-                userLoginInfo.setPassword(passWdHash);
-                JSONObject userJson = (JSONObject) JSONObject.toJSON(userInfos.get(0));
-                userJson.put("token", JwtUtils.createToken(userLoginInfo));
-                return new Result(userJson,1);
+                UserInfo userInfo = userInfos.get(0);
+                UserText userText = new UserText();
+                userText.setUserType(userInfo.getUserType());
+                userText.setUsername(userInfo.getUsername());
+                userText.setEmail(userInfo.getEmail());
+                userText.setToken(JwtUtils.createToken(userLoginInfo));
+                return new Result(userText,1);
             } else {
                 return new Result("The password is not correct.", 0);
             }
@@ -103,11 +106,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void updateBusinessUserInfo(JSONObject user) {
-        BusinessInfo userInfo = user.toJavaObject(BusinessInfo.class);
-        BusinessInfoExample example = new BusinessInfoExample();
-        BusinessInfoExample.Criteria criteria = example.createCriteria();
+        UserInfo userInfo = user.toJavaObject(UserInfo.class);
+        UserInfoExample example = new UserInfoExample();
+        UserInfoExample.Criteria criteria = example.createCriteria();
         criteria.andIdEqualTo(userInfo.getId());
-        businessInfoMapper.updateByExample(userInfo, example);
+        userInfoMapper.updateByExample(userInfo, example);
     }
 
     @Override
