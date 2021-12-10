@@ -73,7 +73,7 @@ public class UserController {
         return new Result<>(restaurants, 1);
     }
 
-    @PostMapping(value = "/deleteSavedRestaurant")
+    @DeleteMapping(value = "/deleteSavedRestaurant")
     public Result<JSONObject> deleteSavedRestaurant(HttpServletRequest request, HttpServletResponse response, @RequestBody JSONObject obj) {
         userService.deleteSavedRestaurant(obj);
         return new Result("", 1);
@@ -109,7 +109,7 @@ public class UserController {
         return new Result("", 1);
     }
 
-    @GetMapping(value="/deleteRestaurantByRestaurantId")
+    @DeleteMapping(value="/deleteRestaurantByRestaurantId")
     public Result deleteRestaurantByRestaurantId(HttpServletRequest request, HttpServletResponse response, @RequestParam("restaurantId") int restaurantId) {
         userService.deleteRestaurantByRestaurantId(restaurantId);
         return new Result("", 1);
