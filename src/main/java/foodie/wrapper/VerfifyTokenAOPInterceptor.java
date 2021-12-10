@@ -32,7 +32,7 @@ public class VerfifyTokenAOPInterceptor {
 
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
 
-        final String token = request.getHeader("authorization");
+        final String token = request.getHeader("Authorization");
         if (token == null) {
             throw new UnauthorizedException();
         }
