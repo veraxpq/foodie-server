@@ -1,4 +1,4 @@
-package org.aiit.wrapper;
+package foodie.common;
 
 import org.springframework.stereotype.Component;
 
