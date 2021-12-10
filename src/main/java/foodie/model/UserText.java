@@ -5,6 +5,15 @@ public class UserText {
     private String username;
     private int userType;
     private String token;
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getEmail() {
         return email;

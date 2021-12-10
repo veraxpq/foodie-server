@@ -97,6 +97,7 @@ public class UserServiceImpl implements UserService {
                 userText.setUsername(userInfo.getUsername());
                 userText.setEmail(userInfo.getEmail());
                 userText.setToken(JwtUtils.createToken(userLoginInfo));
+                userText.setId(userInfo.getId());
                 return new Result(userText,1);
             } else {
                 return new Result("The password is not correct.", 0);
