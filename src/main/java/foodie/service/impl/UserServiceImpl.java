@@ -93,6 +93,7 @@ public class UserServiceImpl implements UserService {
             if (userInfos.get(0).getPassword().equals(passWdHash)) {
                 UserInfo userInfo = userInfos.get(0);
                 UserText userText = new UserText();
+                userText.setZipCode(userInfo.getZipCode());
                 userText.setUserType(userInfo.getUserType());
                 userText.setUsername(userInfo.getUsername());
                 userText.setEmail(userInfo.getEmail());
