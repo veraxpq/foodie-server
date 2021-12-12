@@ -25,6 +25,7 @@ public class UserController {
         return new Result<>(user, 1);
     }
 
+    @VerifyToken
     @PutMapping(value = "/updateUserInfo")
     public Result updateUserInfo(HttpServletRequest request, HttpServletResponse response, @RequestBody JSONObject user) {
         userService.updateUserInfo(user);
