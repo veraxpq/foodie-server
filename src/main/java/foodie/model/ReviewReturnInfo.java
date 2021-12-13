@@ -1,8 +1,10 @@
-package foodie.domain.model;
+package foodie.model;
+
+import com.alibaba.fastjson.JSONObject;
 
 import java.util.Date;
 
-public class ReviewInfo {
+public class ReviewReturnInfo {
     private Integer id;
 
     private String restaurantName;
@@ -17,7 +19,7 @@ public class ReviewInfo {
 
     private Integer userId;
 
-    private String user;
+    private JSONObject user;
 
     public Integer getId() {
         return id;
@@ -75,11 +77,11 @@ public class ReviewInfo {
         this.userId = userId;
     }
 
-    public String getUser() {
+    public JSONObject getUser() {
         return user;
     }
 
-    public void setUser(String user) {
+    public void setUser(JSONObject user) {
         this.user = user;
     }
 }

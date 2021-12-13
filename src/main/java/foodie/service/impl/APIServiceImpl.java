@@ -6,6 +6,7 @@ import com.alibaba.fastjson.JSONObject;
 import foodie.domain.client.ReviewInfoMapper;
 import foodie.domain.model.ReviewInfo;
 import foodie.domain.model.ReviewInfoExample;
+import foodie.model.ReviewReturnInfo;
 import foodie.service.APIService;
 import foodie.util.HttpUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,9 +65,17 @@ public class APIServiceImpl implements APIService {
         criteria.andRestaurantIdEqualTo(id);
         List<ReviewInfo> reviewInfos = reviewInfoMapper.selectByExample(example);
         for (ReviewInfo info : reviewInfos) {
-            array.add(info);
+            ReviewReturnInfo resultInfo = new ReviewReturnInfo();
+            resultInfo.setRestaurantId(info.getRestaurantId());
+            resultInfo.setRestaurantName(info.getRestaurantName());
+            resultInfo.setId(info.getId());
+            resultInfo.setRating(info.getRating());
+            resultInfo.setText(info.getText());
+            resultInfo.setUser((JSONObject) JSONObject.parse(info.getUser()));
+            resultInfo.setTimeCreated(info.getTimeCreated());
+            resultInfo.setUserId(info.getUserId());
+            array.add(resultInfo);
         }
-
         String url = REVIEWS_API + id + "/reviews";
         String result = HttpUtils.getRequest(url, null);
         JSONObject apiResult = (JSONObject) JSONObject.parse(result);

@@ -5,11 +5,11 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="restaurant_name" jdbcType="VARCHAR" property="restaurantName" />
     <result column="rating" jdbcType="INTEGER" property="rating" />
-    <result column="time_created" jdbcType="VARCHAR" property="timeCreated" />
+    <result column="time_created" jdbcType="TIMESTAMP" property="timeCreated" />
     <result column="text" jdbcType="VARCHAR" property="text" />
-    <result column="user_id" jdbcType="INTEGER" property="userId" />
-    <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="restaurant_id" jdbcType="VARCHAR" property="restaurantId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="user" jdbcType="VARCHAR" property="user" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -70,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, restaurant_name, rating, time_created, text, user_id, username, restaurant_id
+    id, restaurant_name, rating, time_created, text, restaurant_id, user_id, user
   </sql>
   <select id="selectByExample" parameterType="foodie.domain.model.ReviewInfoExample" resultMap="BaseResultMap">
     select
@@ -104,11 +104,11 @@
   </delete>
   <insert id="insert" parameterType="foodie.domain.model.ReviewInfo">
     insert into review_info (id, restaurant_name, rating, 
-      time_created, text, user_id, 
-      username, restaurant_id)
+      time_created, text, restaurant_id, 
+      user_id, user)
     values (#{id,jdbcType=INTEGER}, #{restaurantName,jdbcType=VARCHAR}, #{rating,jdbcType=INTEGER}, 
-      #{timeCreated,jdbcType=VARCHAR}, #{text,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, 
-      #{username,jdbcType=VARCHAR}, #{restaurantId,jdbcType=VARCHAR})
+      #{timeCreated,jdbcType=TIMESTAMP}, #{text,jdbcType=VARCHAR}, #{restaurantId,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=INTEGER}, #{user,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="foodie.domain.model.ReviewInfo">
     insert into review_info
@@ -128,14 +128,14 @@
       <if test="text != null">
         text,
       </if>
+      <if test="restaurantId != null">
+        restaurant_id,
+      </if>
       <if test="userId != null">
         user_id,
       </if>
-      <if test="username != null">
-        username,
-      </if>
-      <if test="restaurantId != null">
-        restaurant_id,
+      <if test="user != null">
+        user,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -149,19 +149,19 @@
         #{rating,jdbcType=INTEGER},
       </if>
       <if test="timeCreated != null">
-        #{timeCreated,jdbcType=VARCHAR},
+        #{timeCreated,jdbcType=TIMESTAMP},
       </if>
       <if test="text != null">
         #{text,jdbcType=VARCHAR},
       </if>
+      <if test="restaurantId != null">
+        #{restaurantId,jdbcType=VARCHAR},
+      </if>
       <if test="userId != null">
         #{userId,jdbcType=INTEGER},
       </if>
-      <if test="username != null">
-        #{username,jdbcType=VARCHAR},
-      </if>
-      <if test="restaurantId != null">
-        #{restaurantId,jdbcType=VARCHAR},
+      <if test="user != null">
+        #{user,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -184,19 +184,19 @@
         rating = #{record.rating,jdbcType=INTEGER},
       </if>
       <if test="record.timeCreated != null">
-        time_created = #{record.timeCreated,jdbcType=VARCHAR},
+        time_created = #{record.timeCreated,jdbcType=TIMESTAMP},
       </if>
       <if test="record.text != null">
         text = #{record.text,jdbcType=VARCHAR},
       </if>
+      <if test="record.restaurantId != null">
+        restaurant_id = #{record.restaurantId,jdbcType=VARCHAR},
+      </if>
       <if test="record.userId != null">
         user_id = #{record.userId,jdbcType=INTEGER},
       </if>
-      <if test="record.username != null">
-        username = #{record.username,jdbcType=VARCHAR},
-      </if>
-      <if test="record.restaurantId != null">
-        restaurant_id = #{record.restaurantId,jdbcType=VARCHAR},
+      <if test="record.user != null">
+        user = #{record.user,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -208,11 +208,11 @@
     set id = #{record.id,jdbcType=INTEGER},
       restaurant_name = #{record.restaurantName,jdbcType=VARCHAR},
       rating = #{record.rating,jdbcType=INTEGER},
-      time_created = #{record.timeCreated,jdbcType=VARCHAR},
+      time_created = #{record.timeCreated,jdbcType=TIMESTAMP},
       text = #{record.text,jdbcType=VARCHAR},
+      restaurant_id = #{record.restaurantId,jdbcType=VARCHAR},
       user_id = #{record.userId,jdbcType=INTEGER},
-      username = #{record.username,jdbcType=VARCHAR},
-      restaurant_id = #{record.restaurantId,jdbcType=VARCHAR}
+      user = #{record.user,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -227,19 +227,19 @@
         rating = #{rating,jdbcType=INTEGER},
       </if>
       <if test="timeCreated != null">
-        time_created = #{timeCreated,jdbcType=VARCHAR},
+        time_created = #{timeCreated,jdbcType=TIMESTAMP},
       </if>
       <if test="text != null">
         text = #{text,jdbcType=VARCHAR},
       </if>
+      <if test="restaurantId != null">
+        restaurant_id = #{restaurantId,jdbcType=VARCHAR},
+      </if>
       <if test="userId != null">
         user_id = #{userId,jdbcType=INTEGER},
       </if>
-      <if test="username != null">
-        username = #{username,jdbcType=VARCHAR},
-      </if>
-      <if test="restaurantId != null">
-        restaurant_id = #{restaurantId,jdbcType=VARCHAR},
+      <if test="user != null">
+        user = #{user,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -248,11 +248,11 @@
     update review_info
     set restaurant_name = #{restaurantName,jdbcType=VARCHAR},
       rating = #{rating,jdbcType=INTEGER},
-      time_created = #{timeCreated,jdbcType=VARCHAR},
+      time_created = #{timeCreated,jdbcType=TIMESTAMP},
       text = #{text,jdbcType=VARCHAR},
+      restaurant_id = #{restaurantId,jdbcType=VARCHAR},
       user_id = #{userId,jdbcType=INTEGER},
-      username = #{username,jdbcType=VARCHAR},
-      restaurant_id = #{restaurantId,jdbcType=VARCHAR}
+      user = #{user,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByExampleWithRowbounds" parameterType="foodie.domain.model.ReviewInfoExample" resultMap="BaseResultMap">

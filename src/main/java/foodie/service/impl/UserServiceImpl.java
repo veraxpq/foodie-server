@@ -1,5 +1,6 @@
 package foodie.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import foodie.common.Result;
@@ -187,7 +188,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void postReviews(JSONObject obj) {
-        ReviewInfo reviewInfo = obj.toJavaObject(ReviewInfo.class);
+        ReviewInfo reviewInfo = new ReviewInfo();
+        reviewInfo.setRestaurantName(obj.getString("restaurantName"));
+        reviewInfo.setRating(obj.getInteger("rating"));
+        reviewInfo.setText(obj.getString("text"));
+        reviewInfo.setRestaurantId(obj.getString("restaurantId"));
+        reviewInfo.setUserId(obj.getInteger("userId"));
+        JSONObject user = obj.getJSONObject("user");
+        reviewInfo.setUser(user.toJSONString());
         reviewInfoMapper.insert(reviewInfo);
     }
 
@@ -195,7 +203,7 @@ public class UserServiceImpl implements UserService {
     public JSONArray getReviewsByUserId(int id) {
         ReviewInfoExample example = new ReviewInfoExample();
         ReviewInfoExample.Criteria criteria = example.createCriteria();
-        criteria.andUserIdEqualTo(id);
+        criteria.andIdEqualTo(id);
         List<ReviewInfo> reviewInfos = reviewInfoMapper.selectByExample(example);
         return (JSONArray) JSONArray.toJSON(reviewInfos);
     }
