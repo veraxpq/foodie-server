@@ -71,7 +71,10 @@ public class APIServiceImpl implements APIService {
         String result = HttpUtils.getRequest(url, null);
         JSONObject apiResult = (JSONObject) JSONObject.parse(result);
         if (apiResult.getString("error") == null) {
-            array.add(apiResult);
+            JSONArray apiArray = apiResult.getJSONArray("reviews");
+            for (int i = 0; i < apiArray.size(); i++) {
+                array.add(apiArray.get(i));
+            }
         }
         return array;
     }
