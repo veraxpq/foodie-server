@@ -10,6 +10,7 @@ import foodie.domain.client.ReviewInfoMapper;
 import foodie.domain.client.UserInfoMapper;
 import foodie.domain.model.*;
 import foodie.model.BusinessInfo;
+import foodie.model.ReviewReturnInfo;
 import foodie.model.UserLoginInfo;
 import foodie.model.UserText;
 import foodie.service.UserService;
@@ -205,7 +206,20 @@ public class UserServiceImpl implements UserService {
         ReviewInfoExample.Criteria criteria = example.createCriteria();
         criteria.andIdEqualTo(id);
         List<ReviewInfo> reviewInfos = reviewInfoMapper.selectByExample(example);
-        return (JSONArray) JSONArray.toJSON(reviewInfos);
+        JSONArray resArray = new JSONArray();
+        for (ReviewInfo info : reviewInfos) {
+            ReviewReturnInfo resultInfo = new ReviewReturnInfo();
+            resultInfo.setRestaurantId(info.getRestaurantId());
+            resultInfo.setRestaurantName(info.getRestaurantName());
+            resultInfo.setId(info.getId());
+            resultInfo.setRating(info.getRating());
+            resultInfo.setText(info.getText());
+            resultInfo.setUser((JSONObject) JSONObject.parse(info.getUser()));
+            resultInfo.setTimeCreated(info.getTimeCreated());
+            resultInfo.setUserId(info.getUserId());
+            resArray.add(resultInfo);
+        }
+        return resArray;
     }
 
     @Override
