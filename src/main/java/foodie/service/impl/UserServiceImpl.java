@@ -204,7 +204,7 @@ public class UserServiceImpl implements UserService {
     public JSONArray getReviewsByUserId(int id) {
         ReviewInfoExample example = new ReviewInfoExample();
         ReviewInfoExample.Criteria criteria = example.createCriteria();
-        criteria.andIdEqualTo(id);
+        criteria.andUserIdEqualTo(id);
         List<ReviewInfo> reviewInfos = reviewInfoMapper.selectByExample(example);
         JSONArray resArray = new JSONArray();
         for (ReviewInfo info : reviewInfos) {
@@ -215,7 +215,7 @@ public class UserServiceImpl implements UserService {
             resultInfo.setRating(info.getRating());
             resultInfo.setText(info.getText());
             resultInfo.setUser((JSONObject) JSONObject.parse(info.getUser()));
-            resultInfo.setTimeCreated(info.getTimeCreated());
+            resultInfo.setTime_created(info.getTimeCreated());
             resultInfo.setUserId(info.getUserId());
             resArray.add(resultInfo);
         }

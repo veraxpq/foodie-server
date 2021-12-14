@@ -72,7 +72,7 @@ public class APIServiceImpl implements APIService {
             resultInfo.setRating(info.getRating());
             resultInfo.setText(info.getText());
             resultInfo.setUser((JSONObject) JSONObject.parse(info.getUser()));
-            resultInfo.setTimeCreated(info.getTimeCreated());
+            resultInfo.setTime_created(info.getTimeCreated());
             resultInfo.setUserId(info.getUserId());
             array.add(resultInfo);
         }
