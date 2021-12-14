@@ -12,6 +12,7 @@ import foodie.util.HttpUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -64,6 +65,7 @@ public class APIServiceImpl implements APIService {
         ReviewInfoExample.Criteria criteria = example.createCriteria();
         criteria.andRestaurantIdEqualTo(id);
         List<ReviewInfo> reviewInfos = reviewInfoMapper.selectByExample(example);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss");
         for (ReviewInfo info : reviewInfos) {
             ReviewReturnInfo resultInfo = new ReviewReturnInfo();
             resultInfo.setRestaurantId(info.getRestaurantId());
@@ -72,7 +74,8 @@ public class APIServiceImpl implements APIService {
             resultInfo.setRating(info.getRating());
             resultInfo.setText(info.getText());
             resultInfo.setUser((JSONObject) JSONObject.parse(info.getUser()));
-            resultInfo.setTime_created(info.getTimeCreated());
+            String createTime = simpleDateFormat.format(info.getTimeCreated());
+            resultInfo.setTime_created(createTime);
             resultInfo.setUserId(info.getUserId());
             array.add(resultInfo);
         }

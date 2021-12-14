@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.text.ParseException;
 
 @RestController
 @RequestMapping("/foodie")
@@ -95,7 +96,7 @@ public class UserController {
 
     @VerifyToken
     @GetMapping(value="/getReviewsByUserId")
-    public Result<JSONArray> getReviewsByUserId(HttpServletRequest request, HttpServletResponse response, @RequestParam("id") int id) {
+    public Result<JSONArray> getReviewsByUserId(HttpServletRequest request, HttpServletResponse response, @RequestParam("id") int id) throws ParseException {
         JSONArray reviews = userService.getReviewsByUserId(id);
         return new Result<>(reviews, 1);
     }

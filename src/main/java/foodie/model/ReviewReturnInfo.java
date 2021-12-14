@@ -11,7 +11,7 @@ public class ReviewReturnInfo {
 
     private Integer rating;
 
-    private Date time_created;
+    private String time_created;
 
     private String text;
 
@@ -21,11 +21,11 @@ public class ReviewReturnInfo {
 
     private JSONObject user;
 
-    public Date getTime_created() {
+    public String getTime_created() {
         return time_created;
     }
 
-    public void setTime_created(Date time_created) {
+    public void setTime_created(String time_created) {
         this.time_created = time_created;
     }
 

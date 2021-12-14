@@ -4,6 +4,8 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import foodie.common.Result;
 
+import java.text.ParseException;
+
 public interface UserService {
 
     Result login(JSONObject user);
@@ -19,7 +21,7 @@ public interface UserService {
     void postReviews(JSONObject obj);
     void deleteReviewById(int id);
 
-    JSONArray getReviewsByUserId(int id);
+    JSONArray getReviewsByUserId(int id) throws ParseException;
 
     //for businuess user
     void createBusinessUser(JSONObject user);

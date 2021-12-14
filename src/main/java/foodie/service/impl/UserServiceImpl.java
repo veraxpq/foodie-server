@@ -23,6 +23,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import javax.jws.soap.SOAPBinding;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -201,12 +204,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public JSONArray getReviewsByUserId(int id) {
+    public JSONArray getReviewsByUserId(int id) throws ParseException {
         ReviewInfoExample example = new ReviewInfoExample();
         ReviewInfoExample.Criteria criteria = example.createCriteria();
         criteria.andUserIdEqualTo(id);
         List<ReviewInfo> reviewInfos = reviewInfoMapper.selectByExample(example);
         JSONArray resArray = new JSONArray();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss");
         for (ReviewInfo info : reviewInfos) {
             ReviewReturnInfo resultInfo = new ReviewReturnInfo();
             resultInfo.setRestaurantId(info.getRestaurantId());
@@ -215,7 +219,8 @@ public class UserServiceImpl implements UserService {
             resultInfo.setRating(info.getRating());
             resultInfo.setText(info.getText());
             resultInfo.setUser((JSONObject) JSONObject.parse(info.getUser()));
-            resultInfo.setTime_created(info.getTimeCreated());
+            String createTime = simpleDateFormat.format(info.getTimeCreated());
+            resultInfo.setTime_created(createTime);
             resultInfo.setUserId(info.getUserId());
             resArray.add(resultInfo);
         }
