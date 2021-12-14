@@ -65,7 +65,7 @@ public class APIServiceImpl implements APIService {
         ReviewInfoExample.Criteria criteria = example.createCriteria();
         criteria.andRestaurantIdEqualTo(id);
         List<ReviewInfo> reviewInfos = reviewInfoMapper.selectByExample(example);
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         for (ReviewInfo info : reviewInfos) {
             ReviewReturnInfo resultInfo = new ReviewReturnInfo();
             resultInfo.setRestaurantId(info.getRestaurantId());
